@@ -42,7 +42,7 @@ Easily Build Your Url
 --------
 an quick example:
 ```php
-$params = array("id"=>123, "action=get");
+$params = array("id"=>123, "action"=>"get");
 $url = Url::join("www.mydomain.com","module","controller","action.php", $params );
 // default protocol: http
 echo $url; // >> http://www.mydomain.com/module/controller/action.php?id=123&action=get
@@ -53,7 +53,46 @@ echo $url; // >> https://yourname@github.com:8080/action.php?id=123&flag=1&more=
 
 ```
 
+Build-in URI Decoder for Query Access
+--------
+urldecode:
+```php
+$url = Url::parse("/ddd.php?ids=3%2C4%2C5");
+// urldecode %2C to comma(,) 
+echo $url->query->ids; // >> 3,4,5  
 
+```
+urlencode:
+```php
+// as browser current url is: http://www.base.com/view.php
 
+$url = Url::base("/action.php", "a=share"); // see Relative Urls
+$url = Url::parse($url);
+// append query
+$url->query->refer = "http://a.com/";
+
+echo $url; // >> http://www.base.com/action.php?a=share&refer=http%3A%2F%2Fa.com%2F
+
+```
+
+Relative & Based Urls
+--------
+# Url::base($path [, $metas]); 
+return based path url base on current hostname;
+# Url::abs($path [, $metas]);
+convert relative path to absolute path;
+
+example base on: http://www.base.com/module1/action1/ 
+```php
+echo Url::base("module2","action2","id=3"); 
+// >> http://www.base.com/module2/action2?id=3
+
+echo Url::abs("action3.php");
+// >> http://www.base.com/module1/action3.php
+
+echo Url::abs("../module3/action3.php");
+// >> http://www.base.com/module3/action.php
+
+```
 
 

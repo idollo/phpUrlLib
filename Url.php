@@ -165,7 +165,7 @@ class Url {
 	 * Warning: it only work for http protocol
 	 * @return [type] [description]
 	 */
-	public static function basejoin(){
+	public static function base(){
 		$args = func_get_args();
 		array_unshift($args, self::_base()."/");
 		return call_user_func_array(array(new self, "join"), $args);
@@ -317,6 +317,13 @@ class UrlQuery{
 	public function __get($n){
 		$data = $this->data;
 		return isset($data[$n])?$data[$n]:null;
+	}
+
+	/**
+	 * Setter
+	 */
+	public function __set($n,$v){
+		$this->data[$n] = $v;
 	}
 
 	/**
