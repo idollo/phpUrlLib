@@ -13,7 +13,7 @@ echo $urlmeta->protocol;	// >> http
 echo $urlmeta->auth;		// >> user:password
 echo $urlmeta->user;		// >> username
 echo $urlmeta->password;	// >> password
-echo $urlmeta->hostnam;		// >> code.google.com
+echo $urlmeta->hostname;	// >> code.google.com
 echo $urlmeta->port;		// >> 8080
 echo $urlmeta->path;		// >> /script.php
 echo $urlmeta->query;		// >> id=123&action=save (stringify query)
