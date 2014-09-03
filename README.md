@@ -77,9 +77,9 @@ echo $url; // >> http://www.base.com/action.php?a=share&refer=http%3A%2F%2Fa.com
 
 Relative & Based Urls
 --------
-# Url::base($path [, $metas]); 
+### Url::base($path [, $metas]); 
 return based path url base on current hostname;
-# Url::abs($path [, $metas]);
+### Url::abs($path [, $metas]);
 convert relative path to absolute path;
 
 example base on: http://www.base.com/module1/action1/ 
