@@ -1,7 +1,8 @@
 phpUrlLib
 =========
 
-A PHP url utility, build-in url parser and  builder
+A PHP url utility, build-in url parser and  builder				
+[中文 Readme.md]:https://github.com/idolo/phpUrlLib/blob/master/README.md
 
 Parse An Url
 -------
