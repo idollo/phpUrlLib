@@ -2,7 +2,7 @@ phpUrlLib
 =========
 
 A PHP url utility, build-in url parser and  builder				
-[查看中文 Readme.md](https://github.com/idolo/phpUrlLib/blob/master/README.md)
+[查看中文 Readme.md](https://github.com/idolo/phpUrlLib/blob/master/README.CN.md)
 
 Parse An Url
 -------
