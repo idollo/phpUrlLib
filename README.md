@@ -7,6 +7,7 @@ A PHP url utility, build-in url parser and  builder
 Parse An Url
 -------
 example:
+
 ```php
 $urlmeta = Url::parse("http://username:password@code.google.com:8080/script.php?id=123&action=save#hash");
 
@@ -93,7 +94,19 @@ echo Url::abs("action3.php");
 
 echo Url::abs("../module3/action3.php");
 // >> http://www.base.com/module3/action.php
-
 ```
 
 
+```u
+window.location.href= "hello";
+var x = 4+5 || 6;
+function hello(a,b,c){
+}
+alert("mygod");
+```
+
+```html
+<html>
+    <body id="hello">hello</body>
+</html>
+```
