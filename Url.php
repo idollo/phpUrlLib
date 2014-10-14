@@ -1,7 +1,7 @@
 <?php
 /**
  * Url Parser & Builder
- * @version  1.0.0
+ * @version  1.0.1
  * @author idollo <stone58@qq.com>
  * 
  * @properties
@@ -75,6 +75,17 @@ class Url {
 			case "query": return $this->_query;
 			case "queryString": return $this->query->toString();
 
+
+			// @internal
+			case "_protocol":
+				return "{$this->protocol}://";
+			// @internal
+			case "_base":
+				return $this->hostname?"{$this->_protocol}{$this->hostname}{$this->_port}/":self::_base();
+
+			// @internal 
+			case "_port":
+				return $this->port?":{$this->port}":"";
 			// auth
 			case "_auth":
 				$auth = $this->auth;
@@ -155,7 +166,8 @@ class Url {
 			}
 			$url->path = self::joinPath($url->path, $p);
 		}
-		
+		$url->path = self::_abspath($url->path, $url->_base );
+
 		return $url->url;
 	}
 
@@ -167,7 +179,7 @@ class Url {
 	 */
 	public static function base(){
 		$args = func_get_args();
-		array_unshift($args, self::_base()."/");
+		array_unshift($args, self::_base() );
 		return call_user_func_array(array(new self, "join"), $args);
 	}
 
@@ -188,10 +200,7 @@ class Url {
 	 */
 	public static function joinPath(){
 		$paths = func_get_args();
-		$path = array_shift($paths);
-		foreach($paths as $p){
-			$path = self::_abspath($p, $path);
-		}
+		$path =  implode("/", $paths);
 		return $path;
 	}
 
@@ -210,7 +219,7 @@ class Url {
 
 	// return current base url;
 	protected static function _base(){
-		return self::join($_SERVER['HTTP_HOST']);
+		return self::join($_SERVER['HTTP_HOST'])."/";
 	}
 
 	// return current path
@@ -228,6 +237,7 @@ class Url {
 	}
 
 	protected static function _abspath($path, $base=""){
+		if(!$path) return "";
 		$sep = "/";
 		$base = $base ? $base : self::_path();
 		$base = self::_parentpath($base);
